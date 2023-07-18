@@ -1,0 +1,43 @@
+From 8eed494fbf1710b1da41e32726f99bd26a8aaeb8 Mon Sep 17 00:00:00 2001
+From: MSe <mse1969@posteo.de>
+Date: Thu, 22 Oct 2020 22:59:15 +0200
+Subject: [PATCH] Different sign method in build script
+
+The original method, as documented by Google / LineageOS, sometimes causes
+errors when executing the 'ota_from_target_files' python script.
+
+Therefore, the combination of PRODUCT_DEFAULT_DEV_CERTIFICATE in common.mk
+of vendor/lineage and setting a symlink testkey.* => releasekey.* in the
+certs directory to allow selinux to build has been chosen, similar to
+the docker image in github.com/lineageos4microg.
+
+Adapted for Android 9 and above:
+Soong now requires the keys directory within the build tree, hence a
+symlink is created accordingly
+
+Change-Id: I273947755ffeb5beb8153d625f3a23cf4f210221
+---
+ config/common.mk | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/config/common.mk b/config/common.mk
+index 4d97d6d8..187ae867 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -13,6 +13,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+     ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
+ endif
+ 
++# Sign with own key
++ifneq ($(OWN_KEYS_DIR),)
++$(shell ln -sf $(OWN_KEYS_DIR) user-keys)
++PRODUCT_DEFAULT_DEV_CERTIFICATE := user-keys/releasekey
++PRODUCT_OTA_PUBLIC_KEYS := user-keys/releasekey
++endif
++
+ ifeq ($(TARGET_BUILD_VARIANT),eng)
+ # Disable ADB authentication
+ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += ro.adb.secure=0
+-- 
+2.30.2
+
