@@ -5,7 +5,6 @@ cat <<EOF
 art:patch_700_art.patch
 external/conscrypt:patch_701_conscrypt.patch
 frameworks/ex:patch_702_frameworks-ex.patch
-packages/apps/Bluetooth:patch_703_Bluetooth.patch
 packages/apps/Nfc:patch_704_Nfc.patch
 EOF
 }
@@ -22,11 +21,11 @@ TOPDIR=$PWD
 #echo "-"
 #cd $TOPDIR
 
-cd device/oneplus/hotdog
-echo "Patching $PWD (prevent recovery from being overwritten)"
-patch -p1 < $THISDIR/patch_020_hotdog-recovery.patch
-echo "-"
-cd $TOPDIR
+#cd device/oneplus/hotdog
+#echo "Patching $PWD (prevent recovery from being overwritten)"
+#patch -p1 < $THISDIR/patch_020_hotdog-recovery.patch
+#echo "-"
+#cd $TOPDIR
 
 #cd $TOPDIR
 #cd packages/apps/Dialer
@@ -35,25 +34,18 @@ cd $TOPDIR
 #echo "-"
 #cd $TOPDIR
 
-cd $TOPDIR
-cd packages/apps/DocumentsUI
-echo "Patching $PWD (Scoped storage)"
-patch -p1 < $THISDIR/patch_103_DocumentsUI.patch
-echo "-"
-cd $TOPDIR
-
-cd $TOPDIR
-cd external/openssh
-echo "Patching $PWD (hmalloc)"
-patch -p1 < $THISDIR/patch_100_openssh.patch
-echo "-"
-cd $TOPDIR
+#cd $TOPDIR
+#cd external/openssh
+#echo "Patching $PWD (hmalloc)"
+#patch -p1 < $THISDIR/patch_100_openssh.patch
+#echo "-"
+#cd $TOPDIR
 
 
 cd $TOPDIR
 cd frameworks/opt/net/wifi
 echo "Patching $PWD (Randomize MAC)"
-patch -p1 < $THISDIR/patch_101_frameworks-opt_net_wifi.patch
+patch -p1 < $THISDIR/patch_101_frameworks-opt-net-wifi.patch
 echo "-"
 cd $TOPDIR
 
@@ -65,16 +57,17 @@ echo "-"
 cd $TOPDIR
 
 cd $TOPDIR
-cd system/bt
-echo "Patching $PWD (alloc_size attributes)"
-patch -p1 < $THISDIR/patch_104_bt.patch
+cd packages/modules/NetworkStack
+echo "Patching $PWD (pad filenames to 32 bytes)"
+patch -p1 < $THISDIR/patch_103_NetworkStack.patch
 echo "-"
 cd $TOPDIR
+
 
 cd $TOPDIR
 cd system/extras
 echo "Patching $PWD (pad filenames to 32 bytes)"
-patch -p1 < $THISDIR/patch_105_extras.patch
+patch -p1 < $THISDIR/patch_104_extras.patch
 echo "-"
 cd $TOPDIR
 
