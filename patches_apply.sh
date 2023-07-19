@@ -34,13 +34,12 @@ TOPDIR=$PWD
 #echo "-"
 #cd $TOPDIR
 
-#cd $TOPDIR
-#cd external/openssh
-#echo "Patching $PWD (hmalloc)"
-#patch -p1 < $THISDIR/patch_100_openssh.patch
-#echo "-"
-#cd $TOPDIR
-
+cd $TOPDIR
+cd external/openssh
+echo "Patching $PWD (hmalloc)"
+patch -p1 < $THISDIR/patch_100_openssh.patch
+echo "-"
+cd $TOPDIR
 
 cd $TOPDIR
 cd frameworks/opt/net/wifi
