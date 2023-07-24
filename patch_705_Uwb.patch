@@ -1,0 +1,26 @@
+From 53cc9e48011cff81b2818730011a7d6eadbc4630 Mon Sep 17 00:00:00 2001
+From: r3g_5z <june@girlboss.ceo>
+Date: Mon, 24 Apr 2023 12:23:45 -0400
+Subject: [PATCH] constify JNINativeMethod table
+
+Signed-off-by: r3g_5z <june@girlboss.ceo>
+---
+ service/uci/jni/UwbNativeManager.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/service/uci/jni/UwbNativeManager.cpp b/service/uci/jni/UwbNativeManager.cpp
+index 23734317..6919ba1d 100755
+--- a/service/uci/jni/UwbNativeManager.cpp
++++ b/service/uci/jni/UwbNativeManager.cpp
+@@ -1789,7 +1789,7 @@ jobject uwbNativeManager_GetDeviceCapebilityParams(JNIEnv* env, jobject o) {
+ ** UWB service layer has to invoke these APIs to get required functionality
+ **
+ *****************************************************************************/
+-static JNINativeMethod gMethods[] = {
++static const JNINativeMethod gMethods[] = {
+     {"nativeInit", "()Z", (void *)uwbNativeManager_init},
+     {"nativeDoInitialize", "()Z", (void *)uwbNativeManager_doInitialize},
+     {"nativeDoDeinitialize", "()Z", (void *)uwbNativeManager_doDeinitialize},
+-- 
+2.30.2
+

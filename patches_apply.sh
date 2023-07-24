@@ -6,6 +6,7 @@ art:patch_700_art.patch
 external/conscrypt:patch_701_conscrypt.patch
 frameworks/ex:patch_702_frameworks-ex.patch
 packages/apps/Nfc:patch_704_Nfc.patch
+packages/modules/Uwb:patch_705_Uwb.patch
 EOF
 }
 

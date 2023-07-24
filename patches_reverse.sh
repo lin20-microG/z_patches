@@ -28,6 +28,7 @@ clear_set frameworks/opt/net/wifi
 clear_set packages/apps/Nfc
 clear_set packages/apps/SetupWizard
 clear_set packages/modules/NetworkStack
+clear_set packages/modules/Uwb
 clear_set system/extras
 
 cd $THISDIR
