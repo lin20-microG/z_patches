@@ -28,12 +28,19 @@ TOPDIR=$PWD
 #echo "-"
 #cd $TOPDIR
 
-#cd $TOPDIR
-#cd packages/apps/Dialer
-#echo "Patching $PWD (Remove Google forward lookup)"
-#patch -p1 < $THISDIR/patch_101_Dialer.patch
-#echo "-"
-#cd $TOPDIR
+cd $TOPDIR
+cd packages/apps/DeskClock
+echo "Patching $PWD (block alarm-off from other apps)"
+patch -p1 < $THISDIR/patch_108_DeskClock.patch
+echo "-"
+cd $TOPDIR
+
+cd $TOPDIR
+cd packages/apps/Dialer
+echo "Patching $PWD (Remove Google forward lookup)"
+patch -p1 < $THISDIR/patch_105_Dialer.patch
+echo "-"
+cd $TOPDIR
 
 cd $TOPDIR
 cd external/openssh
@@ -63,11 +70,24 @@ patch -p1 < $THISDIR/patch_103_NetworkStack.patch
 echo "-"
 cd $TOPDIR
 
-
 cd $TOPDIR
 cd system/extras
 echo "Patching $PWD (pad filenames to 32 bytes)"
 patch -p1 < $THISDIR/patch_104_extras.patch
+echo "-"
+cd $TOPDIR
+
+cd $TOPDIR
+cd packages/modules/common
+echo "Patching $PWD (allowed APEXes)"
+patch -p1 < $THISDIR/patch_106_modules-common.patch
+echo "-"
+cd $TOPDIR
+
+cd $TOPDIR
+cd packages/apps/ImsServiceEntitlement
+echo "Patching $PWD (delay FCM registration)"
+patch -p1 < $THISDIR/patch_107_ImsServiceEnt.patch
 echo "-"
 cd $TOPDIR
 

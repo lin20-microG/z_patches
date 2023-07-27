@@ -1,0 +1,24 @@
+From 3d376f87b3d34604c8f1050525f71a3cab4123dc Mon Sep 17 00:00:00 2001
+From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
+Date: Sat, 2 Jul 2022 09:47:31 +0300
+Subject: [PATCH] allow APEX modules to use SettingsLibActionButtonsPreference
+
+---
+ build/allowed_deps.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/build/allowed_deps.txt b/build/allowed_deps.txt
+index 592d20e..1f22af2 100644
+--- a/build/allowed_deps.txt
++++ b/build/allowed_deps.txt
+@@ -1022,6 +1022,7 @@ server_configurable_flags(minSdkVersion:29)
+ ServiceWifiResourcesGoogle(minSdkVersion:30)
+ SettingsLibActionBarShadow(minSdkVersion:21)
+ SettingsLibActionBarShadow(minSdkVersion:28)
++SettingsLibActionButtonsPreference(minSdkVersion:21)
+ SettingsLibAppPreference(minSdkVersion:21)
+ SettingsLibBarChartPreference(minSdkVersion:21)
+ SettingsLibCollapsingToolbarBaseActivity(minSdkVersion:29)
+-- 
+2.30.2
+

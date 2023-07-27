@@ -1,0 +1,140 @@
+From aa387a5cab37e268b4ef0ae95a43c697af01eff1 Mon Sep 17 00:00:00 2001
+From: Dmitry Muhomor <muhomor.dmitry@gmail.com>
+Date: Mon, 22 Aug 2022 16:14:11 +0300
+Subject: [PATCH] don't allow other apps to snooze or dismiss alarms
+
+Also protect ALARM_DONE_ACTION (it closes the AlarmActivity) by marking its
+receiver as Context.RECEIVER_NOT_EXPORTED.
+
+Change-Id: Ide1dc43b9af93accbcb536ab8b6a1cab8efcf604
+---
+ .../deskclock/alarms/AlarmActivity.java       | 10 +---
+ .../deskclock/alarms/AlarmService.java        | 59 -------------------
+ 2 files changed, 1 insertion(+), 68 deletions(-)
+
+diff --git a/src/com/android/deskclock/alarms/AlarmActivity.java b/src/com/android/deskclock/alarms/AlarmActivity.java
+index 00091abb4..746b79450 100644
+--- a/src/com/android/deskclock/alarms/AlarmActivity.java
++++ b/src/com/android/deskclock/alarms/AlarmActivity.java
+@@ -96,12 +96,6 @@ public class AlarmActivity extends BaseActivity
+ 
+             if (!mAlarmHandled) {
+                 switch (action) {
+-                    case AlarmService.ALARM_SNOOZE_ACTION:
+-                        snooze();
+-                        break;
+-                    case AlarmService.ALARM_DISMISS_ACTION:
+-                        dismiss();
+-                        break;
+                     case AlarmService.ALARM_DONE_ACTION:
+                         finish();
+                         break;
+@@ -255,9 +249,7 @@ public class AlarmActivity extends BaseActivity
+         if (!mReceiverRegistered) {
+             // Register to get the alarm done/snooze/dismiss intent.
+             final IntentFilter filter = new IntentFilter(AlarmService.ALARM_DONE_ACTION);
+-            filter.addAction(AlarmService.ALARM_SNOOZE_ACTION);
+-            filter.addAction(AlarmService.ALARM_DISMISS_ACTION);
+-            registerReceiver(mReceiver, filter, Context.RECEIVER_EXPORTED);
++            registerReceiver(mReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+             mReceiverRegistered = true;
+         }
+ 
+diff --git a/src/com/android/deskclock/alarms/AlarmService.java b/src/com/android/deskclock/alarms/AlarmService.java
+index 9b8d11ddf..1e7acd7ad 100644
+--- a/src/com/android/deskclock/alarms/AlarmService.java
++++ b/src/com/android/deskclock/alarms/AlarmService.java
+@@ -43,19 +43,6 @@ import com.android.deskclock.provider.AlarmInstance;
+  * exits early if AlarmActivity is bound to prevent double-processing of the snooze/dismiss intents.
+  */
+ public class AlarmService extends Service {
+-    /**
+-     * AlarmActivity and AlarmService (when unbound) listen for this broadcast intent
+-     * so that other applications can snooze the alarm (after ALARM_ALERT_ACTION and before
+-     * ALARM_DONE_ACTION).
+-     */
+-    public static final String ALARM_SNOOZE_ACTION = "com.android.deskclock.ALARM_SNOOZE";
+-
+-    /**
+-     * AlarmActivity and AlarmService listen for this broadcast intent so that other
+-     * applications can dismiss the alarm (after ALARM_ALERT_ACTION and before ALARM_DONE_ACTION).
+-     */
+-    public static final String ALARM_DISMISS_ACTION = "com.android.deskclock.ALARM_DISMISS";
+-
+     /** A public action sent by AlarmService when the alarm has started. */
+     public static final String ALARM_ALERT_ACTION = "com.android.deskclock.ALARM_ALERT";
+ 
+@@ -76,9 +63,6 @@ public class AlarmService extends Service {
+     /** Whether the service is currently bound to AlarmActivity */
+     private boolean mIsBound = false;
+ 
+-    /** Whether the receiver is currently registered */
+-    private boolean mIsRegistered = false;
+-
+     @Override
+     public IBinder onBind(Intent intent) {
+         mIsBound = true;
+@@ -146,48 +130,10 @@ public class AlarmService extends Service {
+         AlarmAlertWakeLock.releaseCpuLock();
+     }
+ 
+-    private final BroadcastReceiver mActionsReceiver = new BroadcastReceiver() {
+-        @Override
+-        public void onReceive(Context context, Intent intent) {
+-            final String action = intent.getAction();
+-            LogUtils.i("AlarmService received intent %s", action);
+-            if (mCurrentAlarm == null || mCurrentAlarm.mAlarmState != AlarmInstance.FIRED_STATE) {
+-                LogUtils.i("No valid firing alarm");
+-                return;
+-            }
+-
+-            if (mIsBound) {
+-                LogUtils.i("AlarmActivity bound; AlarmService no-op");
+-                return;
+-            }
+-
+-            switch (action) {
+-                case ALARM_SNOOZE_ACTION:
+-                    // Set the alarm state to snoozed.
+-                    // If this broadcast receiver is handling the snooze intent then AlarmActivity
+-                    // must not be showing, so always show snooze toast.
+-                    AlarmStateManager.setSnoozeState(context, mCurrentAlarm, true /* showToast */);
+-                    Events.sendAlarmEvent(R.string.action_snooze, R.string.label_intent);
+-                    break;
+-                case ALARM_DISMISS_ACTION:
+-                    // Set the alarm state to dismissed.
+-                    AlarmStateManager.deleteInstanceAndUpdateParent(context, mCurrentAlarm);
+-                    Events.sendAlarmEvent(R.string.action_dismiss, R.string.label_intent);
+-                    break;
+-            }
+-        }
+-    };
+-
+     @Override
+     public void onCreate() {
+         super.onCreate();
+ 
+-        // Register the broadcast receiver
+-        final IntentFilter filter = new IntentFilter(ALARM_SNOOZE_ACTION);
+-        filter.addAction(ALARM_DISMISS_ACTION);
+-        registerReceiver(mActionsReceiver, filter, Context.RECEIVER_EXPORTED);
+-        mIsRegistered = true;
+-
+         // set up for flip and shake actions
+         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+         mFlipAction = DataModel.getDataModel().getFlipAction();
+@@ -247,11 +193,6 @@ public class AlarmService extends Service {
+         if (mCurrentAlarm != null) {
+             stopCurrentAlarm();
+         }
+-
+-        if (mIsRegistered) {
+-            unregisterReceiver(mActionsReceiver);
+-            mIsRegistered = false;
+-        }
+     }
+ 
+     private interface ResettableSensorEventListener extends SensorEventListener {
+-- 
+2.30.2
+
