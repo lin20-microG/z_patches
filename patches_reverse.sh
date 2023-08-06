@@ -20,7 +20,7 @@ TOPDIR=$PWD
 
 
 clear_set art
-#clear_set device/oneplus/hotdog
+clear_set device/oneplus/hotdog
 clear_set external/conscrypt
 clear_set external/openssh
 clear_set frameworks/ex

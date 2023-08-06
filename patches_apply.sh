@@ -22,11 +22,11 @@ TOPDIR=$PWD
 #echo "-"
 #cd $TOPDIR
 
-#cd device/oneplus/hotdog
-#echo "Patching $PWD (prevent recovery from being overwritten)"
-#patch -p1 < $THISDIR/patch_020_hotdog-recovery.patch
-#echo "-"
-#cd $TOPDIR
+cd device/oneplus/hotdog
+echo "Patching $PWD (prevent recovery from being overwritten)"
+patch -p1 < $THISDIR/patch_020_hotdog-recovery.patch
+echo "-"
+cd $TOPDIR
 
 cd $TOPDIR
 cd packages/apps/DeskClock
