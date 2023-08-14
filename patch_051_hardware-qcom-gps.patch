@@ -1,0 +1,18 @@
+
+project hardware/qcom/gps/
+diff --git a/etc/gps.conf b/etc/gps.conf
+index 3bec29a..abfdcec 100644
+--- a/etc/gps.conf
++++ b/etc/gps.conf
+@@ -1,8 +1,8 @@
+ #Uncommenting these urls would only enable
+ #the power up auto injection and force injection(test case).
+-#XTRA_SERVER_1=http://xtrapath1.izatcloud.net/xtra2.bin
+-#XTRA_SERVER_2=http://xtrapath2.izatcloud.net/xtra2.bin
+-#XTRA_SERVER_3=http://xtrapath3.izatcloud.net/xtra2.bin
++XTRA_SERVER_1=https://xtrapath4.izatcloud.net/xtra2.bin
++XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra2.bin
++XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra2.bin
+ 
+ #Version check for XTRA
+ #DISABLE = 0
