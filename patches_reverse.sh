@@ -35,6 +35,7 @@ clear_set packages/apps/SetupWizard
 clear_set packages/modules/common
 clear_set packages/modules/NetworkStack
 clear_set packages/modules/Uwb
+clear_set system/ca-certificates
 clear_set system/extras
 
 cd $THISDIR
