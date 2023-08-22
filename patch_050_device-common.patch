@@ -1,5 +1,21 @@
+From abfe356fc12ac5a7f10a70001a003bfbc494d2a2 Mon Sep 17 00:00:00 2001
+From: MSe <mse1969@posteo.de>
+Date: Tue, 22 Aug 2023 21:04:51 +0200
+Subject: [PATCH] Harden GPS config
 
-project device/common/
+ * Switch gpsOneXtra to IZatCloud (invalid certificate)
+ * Enable HTTPS (IZatCloud supports HTTPS)
+
+Change-Id: Ic4d2e52cbe9bae60de890063a01d2115cb26f75f
+---
+ gps/gps.conf_AS      | 6 +++---
+ gps/gps.conf_AS_SUPL | 6 +++---
+ gps/gps.conf_EU      | 6 +++---
+ gps/gps.conf_EU_SUPL | 6 +++---
+ gps/gps.conf_US      | 6 +++---
+ gps/gps.conf_US_SUPL | 6 +++---
+ 6 files changed, 18 insertions(+), 18 deletions(-)
+
 diff --git a/gps/gps.conf_AS b/gps/gps.conf_AS
 index ce3a4e2..7c49199 100644
 --- a/gps/gps.conf_AS
@@ -12,18 +28,17 @@ index ce3a4e2..7c49199 100644
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
 diff --git a/gps/gps.conf_AS_SUPL b/gps/gps.conf_AS_SUPL
-index a0e2a7d..513fe5f 100644
+index a0e2a7d..34d1f3e 100644
 --- a/gps/gps.conf_AS_SUPL
 +++ b/gps/gps.conf_AS_SUPL
 @@ -1,5 +1,5 @@
 -XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin
 -XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin
 -XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin
--SUPL_HOST=supl.google.com
 +XTRA_SERVER_1=https://xtrapath4.izatcloud.net/xtra.bin
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
-+SUPL_HOST=
+ SUPL_HOST=supl.google.com
  SUPL_PORT=7276
 diff --git a/gps/gps.conf_EU b/gps/gps.conf_EU
 index ce3a4e2..7c49199 100644
@@ -37,18 +52,17 @@ index ce3a4e2..7c49199 100644
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
 diff --git a/gps/gps.conf_EU_SUPL b/gps/gps.conf_EU_SUPL
-index a0e2a7d..513fe5f 100644
+index a0e2a7d..34d1f3e 100644
 --- a/gps/gps.conf_EU_SUPL
 +++ b/gps/gps.conf_EU_SUPL
 @@ -1,5 +1,5 @@
 -XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin
 -XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin
 -XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin
--SUPL_HOST=supl.google.com
 +XTRA_SERVER_1=https://xtrapath4.izatcloud.net/xtra.bin
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
-+SUPL_HOST=
+ SUPL_HOST=supl.google.com
  SUPL_PORT=7276
 diff --git a/gps/gps.conf_US b/gps/gps.conf_US
 index ce3a4e2..7c49199 100644
@@ -62,16 +76,18 @@ index ce3a4e2..7c49199 100644
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
 diff --git a/gps/gps.conf_US_SUPL b/gps/gps.conf_US_SUPL
-index a0e2a7d..513fe5f 100644
+index a0e2a7d..34d1f3e 100644
 --- a/gps/gps.conf_US_SUPL
 +++ b/gps/gps.conf_US_SUPL
 @@ -1,5 +1,5 @@
 -XTRA_SERVER_1=http://xtra1.gpsonextra.net/xtra.bin
 -XTRA_SERVER_2=http://xtra2.gpsonextra.net/xtra.bin
 -XTRA_SERVER_3=http://xtra3.gpsonextra.net/xtra.bin
--SUPL_HOST=supl.google.com
 +XTRA_SERVER_1=https://xtrapath4.izatcloud.net/xtra.bin
 +XTRA_SERVER_2=https://xtrapath5.izatcloud.net/xtra.bin
 +XTRA_SERVER_3=https://xtrapath6.izatcloud.net/xtra.bin
-+SUPL_HOST=
+ SUPL_HOST=supl.google.com
  SUPL_PORT=7276
+-- 
+2.39.2
+
