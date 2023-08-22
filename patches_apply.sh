@@ -34,6 +34,12 @@ patch -p1 < $THISDIR/patch_051_hardware-qcom-gps.patch
 echo "-"
 cd $TOPDIR
 
+cd packages/apps/CarrierConfig
+echo "Patching $PWD (lift Carrier restrictions)"
+patch -p1 < $THISDIR/patch_090_CarrierConfig.patch
+echo "-"
+cd $TOPDIR
+
 cd packages/apps/DeskClock
 echo "Patching $PWD (block alarm-off from other apps)"
 patch -p1 < $THISDIR/patch_108_DeskClock.patch

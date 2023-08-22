@@ -1,0 +1,258 @@
+From 57d19155e139aeca6d59250dddc5707bf32d8fc6 Mon Sep 17 00:00:00 2001
+From: MSe <mse1969@posteo.de>
+Date: Tue, 22 Aug 2023 21:20:24 +0200
+Subject: [PATCH] Remove Carrier limitations
+
+Change-Id: Iea85f47589274d2a8bddd3387ce62b106a442125
+---
+ .../carrier_config_carrierid_1345_Telstra.xml |  1 -
+ .../carrier_config_carrierid_1403_Rogers.xml  |  4 ---
+ ...r_config_carrierid_1404_TELUS-Mobility.xml |  4 ---
+ .../carrier_config_carrierid_1788_Sprint.xml  |  1 -
+ ...config_carrierid_1839_Verizon-Wireless.xml | 25 -------------------
+ assets/carrier_config_carrierid_1962_Fido.xml |  4 ---
+ ...ier_config_carrierid_2018_Reliance-Jio.xml |  1 -
+ ...er_config_carrierid_2032_XFINIY-Mobile.xml | 25 -------------------
+ .../carrier_config_carrierid_28_Vodafone.xml  |  1 -
+ ...ier_config_carrierid_576_Bell-Mobility.xml |  4 ---
+ ...arrier_config_carrierid_850_NTT_DOCOMO.xml |  1 -
+ assets/carrier_config_mccmnc_23427.xml        |  3 ---
+ 12 files changed, 74 deletions(-)
+
+diff --git a/assets/carrier_config_carrierid_1345_Telstra.xml b/assets/carrier_config_carrierid_1345_Telstra.xml
+index 49218c3..02d372f 100644
+--- a/assets/carrier_config_carrierid_1345_Telstra.xml
++++ b/assets/carrier_config_carrierid_1345_Telstra.xml
+@@ -13,7 +13,6 @@
+         <item value="dun"/>
+         <item value="supl"/>
+     </string-array>
+-    <string-array name="read_only_apn_types_string_array" num="0"/>
+     <int-array name="lte_rsrp_thresholds_int_array" num="4">
+         <item value="-120"/>
+         <item value="-115"/>
+diff --git a/assets/carrier_config_carrierid_1403_Rogers.xml b/assets/carrier_config_carrierid_1403_Rogers.xml
+index 3331a8e..429e0e3 100644
+--- a/assets/carrier_config_carrierid_1403_Rogers.xml
++++ b/assets/carrier_config_carrierid_1403_Rogers.xml
+@@ -14,10 +14,6 @@
+     <int name="maxImageWidth" value="2592"/>
+     <int name="default_mtu_int" value="1430"/>
+     <string name="carrier_name_string">Rogers</string>
+-    <string name="gps.lpp_profile">2</string>
+-    <string-array name="read_only_apn_types_string_array" num="1">
+-        <item value="*"/>
+-    </string-array>
+     <string-array name="non_roaming_operator_string_array" num="5">
+         <item value="302220"/>
+         <item value="302370"/>
+diff --git a/assets/carrier_config_carrierid_1404_TELUS-Mobility.xml b/assets/carrier_config_carrierid_1404_TELUS-Mobility.xml
+index ca31614..617dc62 100644
+--- a/assets/carrier_config_carrierid_1404_TELUS-Mobility.xml
++++ b/assets/carrier_config_carrierid_1404_TELUS-Mobility.xml
+@@ -11,8 +11,4 @@
+     <int name="recipientLimit" value="10"/>
+     <int name="smsToMmsTextThreshold" value="5"/>
+     <int name="default_mtu_int" value="1410"/>
+-    <string name="gps.lpp_profile">3</string>
+-    <string-array name="read_only_apn_types_string_array" num="1">
+-        <item value="*"/>
+-    </string-array>
+ </carrier_config>
+diff --git a/assets/carrier_config_carrierid_1788_Sprint.xml b/assets/carrier_config_carrierid_1788_Sprint.xml
+index 1fec0f7..7ca5a49 100644
+--- a/assets/carrier_config_carrierid_1788_Sprint.xml
++++ b/assets/carrier_config_carrierid_1788_Sprint.xml
+@@ -2,7 +2,6 @@
+ <carrier_config>
+     <boolean name="carrier_default_wfc_ims_roaming_enabled_bool" value="true" />
+     <boolean name="allow_non_emergency_calls_in_ecm_bool" value="false"/>
+-    <boolean name="apn_expand_bool" value="false"/>
+     <boolean name="carrier_name_override_bool" value="true"/>
+     <boolean name="carrier_settings_enable_bool" value="true"/>
+     <boolean name="config_telephony_use_own_number_for_voicemail_bool" value="true"/>
+diff --git a/assets/carrier_config_carrierid_1839_Verizon-Wireless.xml b/assets/carrier_config_carrierid_1839_Verizon-Wireless.xml
+index 690522c..36aa42f 100644
+--- a/assets/carrier_config_carrierid_1839_Verizon-Wireless.xml
++++ b/assets/carrier_config_carrierid_1839_Verizon-Wireless.xml
+@@ -4,10 +4,8 @@
+     <boolean name="aliasEnabled" value="true"/>
+     <boolean name="allowAttachAudio" value="false"/>
+     <boolean name="allow_add_call_during_video_call" value="false"/>
+-    <boolean name="allow_adding_apns_bool" value="false"/>
+     <boolean name="allow_hold_in_ims_call" value="false"/>
+     <boolean name="allow_merge_wifi_calls_when_vowifi_off_bool" value="false"/>
+-    <boolean name="apn_expand_bool" value="false"/>
+     <boolean name="broadcast_emergency_call_state_changes_bool" value="true"/>
+     <boolean name="carrier_allow_turnoff_ims_bool" value="false"/>
+     <boolean name="carrier_name_override_bool" value="true"/>
+@@ -33,7 +31,6 @@
+     <boolean name="notify_handover_video_from_wifi_to_lte_bool" value="true"/>
+     <boolean name="notify_vt_handover_to_wifi_failure_bool" value="true"/>
+     <boolean name="operator_selection_expand_bool" value="true"/>
+-    <boolean name="gps.persist_lpp_mode_bool" value="true"/>
+     <boolean name="prefer_2g_bool" value="false"/>
+     <boolean name="rtt_supported_bool" value="true"/>
+     <boolean name="rtt_upgrade_supported_for_downgraded_vt_call" value="false"/>
+@@ -119,28 +116,6 @@
+         <item value="1014|call has been pulled by another device|1016"/>
+         <item value="*|Call is dropped due to Wi-Fi signal is degraded|1407"/>
+     </string-array>
+-    <string-array name="read_only_apn_fields_string_array" num="20">
+-        <item value="name"/>
+-        <item value="proxy"/>
+-        <item value="port"/>
+-        <item value="user"/>
+-        <item value="password"/>
+-        <item value="server"/>
+-        <item value="mmsc"/>
+-        <item value="mmsproxy"/>
+-        <item value="mmsport"/>
+-        <item value="mcc"/>
+-        <item value="mnc"/>
+-        <item value="authtype"/>
+-        <item value="type"/>
+-        <item value="protocol"/>
+-        <item value="roaming_protocol"/>
+-        <item value="bearer"/>
+-        <item value="bearer_bitmask"/>
+-        <item value="carrier_enabled"/>
+-        <item value="mvno_type"/>
+-        <item value="mvno_match_data"/>
+-    </string-array>
+     <string-array name="carrier_certificate_string_array" num="2">
+         <item value="FF82050BF6BED1F152AC1A12DC83CACBAD401775161882872C6665FC5E15C8F2"/>
+         <item value="AE23A03436DF07B0CD70FE881CDA2EC1D21215D7B7B0CC68E67B67F5DF89526A"/>
+diff --git a/assets/carrier_config_carrierid_1962_Fido.xml b/assets/carrier_config_carrierid_1962_Fido.xml
+index 9021fb4..5607cc7 100644
+--- a/assets/carrier_config_carrierid_1962_Fido.xml
++++ b/assets/carrier_config_carrierid_1962_Fido.xml
+@@ -13,10 +13,6 @@
+     <int name="maxImageWidth" value="2592"/>
+     <int name="default_mtu_int" value="1410"/>
+     <string name="carrier_name_string">Fido</string>
+-    <string name="gps.lpp_profile">2</string>
+-    <string-array name="read_only_apn_types_string_array" num="1">
+-        <item value="*"/>
+-    </string-array>
+     <string-array name="non_roaming_operator_string_array" num="5">
+         <item value="302220"/>
+         <item value="302610"/>
+diff --git a/assets/carrier_config_carrierid_2018_Reliance-Jio.xml b/assets/carrier_config_carrierid_2018_Reliance-Jio.xml
+index 258a421..561bd49 100644
+--- a/assets/carrier_config_carrierid_2018_Reliance-Jio.xml
++++ b/assets/carrier_config_carrierid_2018_Reliance-Jio.xml
+@@ -4,7 +4,6 @@
+     <boolean name="carrier_supports_ss_over_ut_bool" value="true"/>
+     <boolean name="carrier_name_override_bool" value="true"/>
+     <boolean name="carrier_volte_available_bool" value="true"/>
+-    <boolean name="hide_ims_apn_bool" value="true"/>
+     <int name="httpSocketTimeout" value="300000"/>
+     <int name="volte_replacement_rat_int" value="3"/>
+     <string name="carrier_name_string">JIO</string>
+diff --git a/assets/carrier_config_carrierid_2032_XFINIY-Mobile.xml b/assets/carrier_config_carrierid_2032_XFINIY-Mobile.xml
+index 8ca6b19..7d66f64 100644
+--- a/assets/carrier_config_carrierid_2032_XFINIY-Mobile.xml
++++ b/assets/carrier_config_carrierid_2032_XFINIY-Mobile.xml
+@@ -3,10 +3,8 @@
+     <boolean name="aliasEnabled" value="true"/>
+     <boolean name="allowAttachAudio" value="false"/>
+     <boolean name="allow_add_call_during_video_call" value="false"/>
+-    <boolean name="allow_adding_apns_bool" value="false"/>
+     <boolean name="allow_hold_in_ims_call" value="false"/>
+     <boolean name="allow_merge_wifi_calls_when_vowifi_off_bool" value="false"/>
+-    <boolean name="apn_expand_bool" value="false"/>
+     <boolean name="broadcast_emergency_call_state_changes_bool" value="true"/>
+     <boolean name="carrier_allow_turnoff_ims_bool" value="false"/>
+     <boolean name="carrier_name_override_bool" value="true"/>
+@@ -26,7 +24,6 @@
+     <boolean name="enableMultipartSMS" value="true"/>
+     <boolean name="enabledNotifyWapMMSC" value="true"/>
+     <boolean name="enabledTransID" value="true"/>
+-    <boolean name="gps.persist_lpp_mode_bool" value="true"/>
+     <boolean name="is_ims_conference_size_enforced_bool" value="true"/>
+     <boolean name="mdn_is_additional_voicemail_number_bool" value="true"/>
+     <boolean name="mmsCloseConnection" value="true"/>
+@@ -115,28 +112,6 @@
+         <item value="1014|call has been pulled by another device|1016"/>
+         <item value="*|Call is dropped due to Wi-Fi signal is degraded|1407"/>
+     </string-array>
+-    <string-array name="read_only_apn_fields_string_array" num="20">
+-        <item value="name"/>
+-        <item value="proxy"/>
+-        <item value="port"/>
+-        <item value="user"/>
+-        <item value="password"/>
+-        <item value="server"/>
+-        <item value="mmsc"/>
+-        <item value="mmsproxy"/>
+-        <item value="mmsport"/>
+-        <item value="mcc"/>
+-        <item value="mnc"/>
+-        <item value="authtype"/>
+-        <item value="type"/>
+-        <item value="protocol"/>
+-        <item value="roaming_protocol"/>
+-        <item value="bearer"/>
+-        <item value="bearer_bitmask"/>
+-        <item value="carrier_enabled"/>
+-        <item value="mvno_type"/>
+-        <item value="mvno_match_data"/>
+-    </string-array>
+     <int-array name="lte_rsrp_thresholds_int_array" num="4">
+         <item value="-115"/>
+         <item value="-105"/>
+diff --git a/assets/carrier_config_carrierid_28_Vodafone.xml b/assets/carrier_config_carrierid_28_Vodafone.xml
+index a56bbb0..48c119e 100644
+--- a/assets/carrier_config_carrierid_28_Vodafone.xml
++++ b/assets/carrier_config_carrierid_28_Vodafone.xml
+@@ -10,5 +10,4 @@
+         <item value="132"/>
+         <item value="45"/>
+     </string-array>
+-    <string-array name="read_only_apn_types_string_array" num="0"/>
+ </carrier_config>
+diff --git a/assets/carrier_config_carrierid_576_Bell-Mobility.xml b/assets/carrier_config_carrierid_576_Bell-Mobility.xml
+index a53f172..82574fa 100644
+--- a/assets/carrier_config_carrierid_576_Bell-Mobility.xml
++++ b/assets/carrier_config_carrierid_576_Bell-Mobility.xml
+@@ -12,11 +12,7 @@
+     <int name="smsToMmsTextThreshold" value="8"/>
+     <int name="default_mtu_int" value="1428"/>
+     <string name="emailGatewayNumber">6245</string>
+-    <string name="gps.lpp_profile">2</string>
+     <string-array name="non_roaming_operator_string_array" num="1">
+         <item value="302"/>
+     </string-array>
+-    <string-array name="read_only_apn_types_string_array" num="1">
+-        <item value="*"/>
+-    </string-array>
+ </carrier_config>
+diff --git a/assets/carrier_config_carrierid_850_NTT_DOCOMO.xml b/assets/carrier_config_carrierid_850_NTT_DOCOMO.xml
+index af99f3d..eb72d9e 100644
+--- a/assets/carrier_config_carrierid_850_NTT_DOCOMO.xml
++++ b/assets/carrier_config_carrierid_850_NTT_DOCOMO.xml
+@@ -6,7 +6,6 @@
+     <boolean name="allow_hold_call_during_emergency_bool" value="false"/>
+     <boolean name="carrier_volte_available_bool" value="true"/>
+     <boolean name="enabledMMS" value="false"/>
+-    <boolean name="hide_ims_apn_bool" value="true"/>
+     <boolean name="hide_lte_plus_data_icon_bool" value="false"/>
+     <boolean name="ignore_data_enabled_changed_for_video_calls" value="true"/>
+     <boolean name="show_4g_for_lte_data_icon_bool" value="true"/>
+diff --git a/assets/carrier_config_mccmnc_23427.xml b/assets/carrier_config_mccmnc_23427.xml
+index 4e69d6f..9bd1bcd 100644
+--- a/assets/carrier_config_mccmnc_23427.xml
++++ b/assets/carrier_config_mccmnc_23427.xml
+@@ -2,8 +2,5 @@
+ <carrier_config_list>
+     <carrier_config>
+         <boolean name="show_4g_for_lte_data_icon_bool" value="true" />
+-        <string-array name="read_only_apn_types_string_array" num="1">
+-            <item value="*" />
+-        </string-array>
+     </carrier_config>
+ </carrier_config_list>
+-- 
+2.39.2
+
