@@ -40,12 +40,6 @@ patch -p1 < $THISDIR/patch_108_DeskClock.patch
 echo "-"
 cd $TOPDIR
 
-cd packages/apps/Dialer
-echo "Patching $PWD (Remove Google forward lookup)"
-patch -p1 < $THISDIR/patch_105_Dialer.patch
-echo "-"
-cd $TOPDIR
-
 cd external/openssh
 echo "Patching $PWD (hmalloc)"
 patch -p1 < $THISDIR/patch_100_openssh.patch
