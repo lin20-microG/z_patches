@@ -22,12 +22,6 @@ patch -p1 < $THISDIR/patch_050_device-common.patch
 echo "-"
 cd $TOPDIR
 
-cd device/oneplus/hotdog
-echo "Patching $PWD (prevent recovery from being overwritten)"
-patch -p1 < $THISDIR/patch_020_hotdog-recovery.patch
-echo "-"
-cd $TOPDIR
-
 cd hardware/qcom/gps
 echo "Patching $PWD (Harden location config)"
 patch -p1 < $THISDIR/patch_051_hardware-qcom-gps.patch
