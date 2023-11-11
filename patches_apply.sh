@@ -64,13 +64,6 @@ patch -p1 < $THISDIR/patch_103_NetworkStack.patch
 echo "-"
 cd $TOPDIR
 
-cd system/ca-certificates/files
-echo "Patching $PWD (remove untrusted certs)"
-rm -fv cb156124.0  #E-Turga
-echo "-"
-cd $TOPDIR
-
-
 cd system/extras
 echo "Patching $PWD (pad filenames to 32 bytes)"
 patch -p1 < $THISDIR/patch_104_extras.patch
