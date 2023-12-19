@@ -32,12 +32,12 @@ case "$2" in
 esac
 
 # Bind mount ccache (stupid Android 12 feature, cheat soong)
-if [ ! -f /mnt/ccache/ccache.conf ]; then
-  echo "========================================================================"
-  echo "please run command 'sudo mount --bind ~/out-android/.ccache /mnt/ccache'"
-  echo "========================================================================"
-  exit 1
-fi
+#if [ ! -f /mnt/ccache/ccache.conf ]; then
+#  echo "========================================================================"
+#  echo "please run command 'sudo mount --bind ~/out-android/.ccache /mnt/ccache'"
+#  echo "========================================================================"
+#  exit 1
+#fi
 
 # Initiate environment
 source build/envsetup.sh
